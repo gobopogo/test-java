@@ -14,7 +14,7 @@ public class Callable01 implements Callable{
 		new Callable01().call();  //方法调用
 
 		//线程调用
-		FutureTask task = new FutureTask<>(new Callable01());  //异步，也实现了Runable接口
+		FutureTask task = new FutureTask(new Callable01());  //异步，也实现了Runable接口
 		new Thread(task).start();
 
 		System.out.println(task.get()); //get到返回值

@@ -1,19 +1,26 @@
 package view;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ThreadPoolExample implements Runnable {
 
 	AtomicInteger atomicInteger = new AtomicInteger();
 
+	//测试一下
+	Map conMap = new ConcurrentHashMap();
+
 	@Override
 	public void run() {
 		int task = atomicInteger.incrementAndGet();
 		System.out.println("task：" + task);
+
+
+		conMap.put(task,"哈哈哈");
+		System.out.println(conMap);
 		try {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
@@ -24,8 +31,8 @@ public class ThreadPoolExample implements Runnable {
 	public static void main(String[] args) {
 		//如果corePoolSizex 小于for循环的最大次数，则会被拒绝
 		ThreadPoolExecutor threadPoolExecutor =
-				new ThreadPoolExecutor(1,
-									   1,
+				new ThreadPoolExecutor(10,
+									   10,
 									   0L,
 									   TimeUnit.MILLISECONDS,
 									   new ArrayBlockingQueue<Runnable>(1),  //队列默认只存一个线程
@@ -63,7 +70,7 @@ public class ThreadPoolExample implements Runnable {
 		});*/
 
 		ThreadPoolExample threadPoolExample = new ThreadPoolExample();
-		for (int i=0; i<20; i++){
+		for (int i=0; i<10; i++){
 			threadPoolExecutor.execute(threadPoolExample);  //输出 view.ThreadPoolExample执行线程之前
 			//threadPoolExecutor.submit(threadPoolExample);  // 输出 java.util.concurrent.FutureTask执行线程之前
 
@@ -72,6 +79,50 @@ public class ThreadPoolExample implements Runnable {
 		}
 
 		threadPoolExecutor.shutdown();
+
+		// 如果任务数大于线程池最大核心数，任务就会被加入队列 workQueue.offer(command)，在队列中使用了对当前线程使用重入锁 ReentrantLock，保证入队列的原子操作
+		/**
+		 * public void execute(Runnable command) {
+		 * 		int c = ctl.get();
+		 * 		if (workerCountOf(c) < corePoolSize) {
+		 * 		if (addWorker(command, true))
+		 * 		return;
+		 * 		c = ctl.get();
+		 * 		}
+		 * 		if (isRunning(c) && workQueue.offer(command)) {
+		 * 		int recheck = ctl.get();
+		 * 		if (!isRunning(recheck) && remove(command))
+		 * 		reject(command);
+		 * 		             else if (workerCountOf(recheck) == 0)
+		 * 		addWorker(null, false);
+		 * 		}
+		 * 		         else if (!addWorker(command, false))
+		 * 		reject(command);
+		 * 		}
+		 */
+		//ReentrantLock lock = new ReentrantLock();
+		//lock.tryLock();
+		/**
+		 * 跟进源码看，这个工作队列使用的数据结构是双向链表，Node节点属性 prev,next,data
+		 *
+		 * private boolean linkLast(Node<E> node) {
+		 *         // assert lock.isHeldByCurrentThread();
+		 *         if (count >= capacity)
+		 *             return false;
+		 *         Node<E> l = last;
+		 *         node.prev = l;
+		 *         last = node;
+		 *         if (first == null)
+		 *             first = node;
+		 *         else
+		 *             l.next = node;
+		 *         ++count;
+		 *         notEmpty.signal();
+		 *         return true;
+		 *     }
+		 *
+		 */
+
 
 	}
 }

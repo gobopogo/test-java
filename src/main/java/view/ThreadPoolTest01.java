@@ -13,21 +13,21 @@ public class ThreadPoolTest01 implements Runnable {
 
 		executorService.submit(new ThreadPoolTest01());
 
-		executorService.execute(new ThreadPoolTest01());
+		//executorService.execute(new ThreadPoolTest01());
 		//以上两种方式最终在底层都是调用了java.util.concurrent.ThreadPoolExecutor.execute()方法
 
 		executorService.shutdown();
 
 		//等价于
-		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1,
-																	   1,
-																	   0L,
-																	   TimeUnit.MILLISECONDS,
-																	   new LinkedBlockingQueue<Runnable>());
-		threadPoolExecutor.submit(new ThreadPoolTest01());
-		threadPoolExecutor.execute(new ThreadPoolTest01());
+		//ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1,
+		//															   1,
+		//															   0L,
+		//															   TimeUnit.MILLISECONDS,
+		//															   new LinkedBlockingQueue<Runnable>());
+		//threadPoolExecutor.submit(new ThreadPoolTest01());
+		//threadPoolExecutor.execute(new ThreadPoolTest01());
 
-		threadPoolExecutor.shutdown();
+		//threadPoolExecutor.shutdown();
 
 	}
 
