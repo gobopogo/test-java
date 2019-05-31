@@ -1,4 +1,4 @@
-package view;
+package com.misslyr.test.view;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

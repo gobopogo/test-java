@@ -1,4 +1,4 @@
-package extenorimpl;
+package com.misslyr.test.extenorimpl;
 
 /**
  * @Author missli
@@ -10,7 +10,7 @@ package extenorimpl;
  *
  * 参考：https://blog.csdn.net/qq_38329988/article/details/80855124
  **/
-public class Child001 extends Child01{
+public class Child001 extends Child01 {
 
     @Override
     public void addTest() {

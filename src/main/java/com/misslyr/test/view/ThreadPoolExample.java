@@ -1,16 +1,14 @@
-package view;
+package com.misslyr.test.view;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class ThreadPoolExample implements Runnable {
 
 	AtomicInteger atomicInteger = new AtomicInteger();
 
-	//测试一下
+	// 启动20个线程测试一下
 	Map conMap = new ConcurrentHashMap();
 
 	@Override

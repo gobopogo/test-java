@@ -1,4 +1,4 @@
-package collection;
+package com.misslyr.test.collection;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

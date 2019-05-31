@@ -1,4 +1,4 @@
-package view;
+package com.misslyr.test.view;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;

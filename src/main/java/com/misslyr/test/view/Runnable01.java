@@ -1,4 +1,4 @@
-package view;
+package com.misslyr.test.view;
 
 /**
  * 线程实现2 Runnable 接口
