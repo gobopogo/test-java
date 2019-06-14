@@ -72,7 +72,7 @@ public class ThreadPoolExample implements Runnable {
 			threadPoolExecutor.execute(threadPoolExample);  //输出 view.ThreadPoolExample执行线程之前
 			//threadPoolExecutor.submit(threadPoolExample);  // 输出 java.util.concurrent.FutureTask执行线程之前
 
-			// 产生这种情况是因为什么？
+			// 以上两种方式打印出的内容不一样，产生这种情况是因为什么？
 			// submit()方法中 RunnableFuture<Void> ftask = newTaskFor(task, null); new了一个java的任务
 		}
 
