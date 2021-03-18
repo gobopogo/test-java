@@ -1,4 +1,4 @@
-package com.misslyr.test.view;
+package com.misslyr.test.thread;
 
 /**
  * 线程实现1 集成Thread 类

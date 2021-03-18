@@ -1,4 +1,4 @@
-package com.misslyr.test.view;
+package com.misslyr.test.thread;
 
 import java.util.Map;
 import java.util.concurrent.*;
@@ -78,7 +78,7 @@ public class ThreadPoolExample implements Runnable {
 
 		threadPoolExecutor.shutdown();
 
-		// 如果任务数大于线程池最大核心数，任务就会被加入队列 workQueue.offer(command)，在队列中使用了对当前线程使用重入锁 ReentrantLock，保证入队列的原子操作
+		// 如果任务数大于线程池最大核心数，任务就会被加入队列 workQueue.offer(command)，在队列中对当前线程使用重入锁 ReentrantLock，保证入队列的原子操作
 		/**
 		 * public void execute(Runnable command) {
 		 * 		int c = ctl.get();
