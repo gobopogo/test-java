@@ -23,7 +23,7 @@ public class Context {
     public void printPrice(double price){
         try {
             payStrategy = PayStategyFactory.getInstance().creator(payWay);
-            System.out.println("您预计支付："+ payStrategy.pay(price)+"元");
+            System.out.println("自定义注解 工厂 策略模式 您预计支付："+ payStrategy.pay(price)+"元");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
