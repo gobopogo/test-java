@@ -23,4 +23,18 @@ public class EhcacheTest {
         ehcacheDemo.cacheTest();
     }
 
+    public static void main(String[] args) {
+        method(null);
+    }
+
+    public static void method(String a){
+        switch (a){
+            case "www":
+                System.out.println("dadada");
+                break;
+            default:
+                System.out.println("default");
+        }
+    }
+
 }
