@@ -11,6 +11,11 @@ package com.misslyr.test.juc;
  **/
 public class TestVolatile {
 
+    /**
+     * @description
+     * @author liyr
+     * @date 2022/10/26
+     */
     public static void main(String[] args) {
         //多线程实现1 实现Runable接口
         ThreadDemo thread1 = new ThreadDemo();
