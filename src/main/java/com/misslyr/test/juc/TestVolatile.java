@@ -12,7 +12,7 @@ package com.misslyr.test.juc;
 public class TestVolatile {
 
     /**
-     * @description
+     * @description  weqeq
      * @author liyr
      * @date 2022/10/26
      */
